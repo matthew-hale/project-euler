@@ -10,4 +10,4 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 
 ## Challenge
 
-Parameterize the start and end range of the Fib sequence, as well as the divisor (2 by default)
+Parameterize the end range of the Fibonacci sequence, as well as the divisor (2 by default).
