@@ -8,7 +8,7 @@ func eratosthenes(max int) []int {
     p := 2
     for p * p <= max {
         if primes[p] == true {
-            for i := p * 2; i <= max+1; i += p {
+            for i := p * 2; i <= max; i += p {
                 primes[i] = false
             }
         }
@@ -28,8 +28,6 @@ func eratosthenes(max int) []int {
 }
 
 func main() {
-    primes := eratosthenes(100)
-    for i := range primes {
-        println(primes[i])
-    }
+    primes := eratosthenes(9999999)
+    println(primes[len(primes)-1])
 }
