@@ -1,5 +1,9 @@
 package main
 
+import (
+    "strconv"
+)
+
 //Generate primes using the sieve of eratosthenes method
 //Estimated maximum of 7 digits for this problem
 func eratosthenes(max int) []int {
@@ -37,11 +41,21 @@ func eratosthenes(max int) []int {
 }
 
 //Generate families for each prime, by replacing digits
-func primeFamilies(x int) {
-    //Convert the int to a slice of single digits
+func primeFamilies(x int) []int {
+    //Convert the int to a string, then a slice of ints
+    str := strconv.Itoa(x)
+    var ints []int
+    for _, char := range str {
+        digit, _ := strconv.Atoi(string(char))
+        ints = append(ints, digit)
+    }
+    return ints
 }
 
 func main() {
     primes := eratosthenes(9999999)
     println(primes[len(primes)-1])
+    result := primeFamilies(20)
+    println(result[0])
+    println(result[1])
 }
