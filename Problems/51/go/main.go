@@ -1,22 +1,26 @@
 package main
 
-import (
-)
-
-//Function to create an arbitrary range of integers
-//We'll be giving it fixed values in main
-func makeRange(min, max int) (integers []int) {
-    integers := make([int], max-1)
-    for i := range integers {
-        integers[i] = i + min
+//Generate primes using the sieve of eratosthenes method
+//Estimated maximum of 7 digits for this problem
+func eratosthenes(max int) (primes []bool) {
+    primes = make([]bool, max)
+    for i := range(primes){primes[i] = true}
+    p := 2
+    for p * p <= max {
+        if primes[p] == true {
+        }
     }
+
     return
 }
 
-//Generate primes using the sieve of eratosthenes method
-//Estimated maximum of 7 digits for this problem
-func eratosthenes([]int integers) (primes []int) {
-}
-
 func main() {
+    primes := eratosthenes(10)
+    for i := range(primes){
+        if primes[i] == true {
+            print("true")
+        } else {
+            print("false")
+        }
+    }
 }
