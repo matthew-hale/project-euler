@@ -36,6 +36,11 @@ func eratosthenes(max int) []int {
     return result
 }
 
+//Generate families for each prime, by replacing digits
+func primeFamilies(x int) {
+    //Convert the int to a slice of single digits
+}
+
 func main() {
     primes := eratosthenes(9999999)
     println(primes[len(primes)-1])

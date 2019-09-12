@@ -1,4 +1,4 @@
-1. Generate primes (sieve of eratosthenes).
+1. ~Generate primes (sieve of eratosthenes).~ complete
 
 Generating primes is an easier problem than testing each number for primeness. Plus, there is a hard maximum for this problem in any given base, even factoring in adjustable prime family size, so eventually that maximum can be baked in.
 
