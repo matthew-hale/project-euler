@@ -3,6 +3,7 @@ package main
 import (
     "strconv"
     "math/big"
+    "os"
 )
 
 //Generate primes using the sieve of eratosthenes method
@@ -51,13 +52,56 @@ func primeFamilies(x int) bool {
     }
 
     //Do digit replacement for all possible combinations
-    //digits := len(ints)
+    /*
+    First, we have to determine all the possible digit replacement combinations we can perform.
+    This is dependent upon the number of digits in the prime.
+    For a 5 digit number, we have to get the binomial coefficient of all nCk values:
+        5 choose 1
+        5 choose 2
+        5 choose 3
+        5 choose 4
+        5 choose 5
+    Then we have to actually get those combinations.
+        e.g. for 5 choose 2, there are 10 combinations; we have to generate all 10, ensuring there are no duplicates
+    
+    Example: given the following prime, enumerate the digit replacements that must be performed:
+
+    1103
+
+    4 digits, so for each digit:
+        4 choose 1 = 4
+        for each:
+            create a digit combination that hasn't already been created, and add it to a set
+        4 choose 2
+        4 choose 3
+        4 choose 4
+    */
+    n := len(ints)
+    for i := 1; i <= n; i++ {
+        binomial := big.Binomial(n,i)
+        for j := 1; j <= binomial; j++ {
+            //binomial = number of combinations
+            //i = number of digits we are choosing
+            //n = total number of digits in the prime
+        }
+    }
 
     return true
 }
 
 func main() {
     primes := eratosthenes(9999999)
-    test := big.NewInt(0).Binomial(4,2)
-    println(test.Int64())
+
+    for prime in range primes {
+        families := primeFamilies(prime)
+        for family in range families {
+            count := primeCount(family,primes)
+            if count == 8 {
+                println(prime)
+                os.exit(0)
+            }
+        }
+    }
+
+    println("No such prime found; adjust max value")
 }
