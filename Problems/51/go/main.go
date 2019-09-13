@@ -2,6 +2,7 @@ package main
 
 import (
     "strconv"
+    "math/big"
 )
 
 //Generate primes using the sieve of eratosthenes method
@@ -11,7 +12,7 @@ func eratosthenes(max int) (primes []int) {
     primeBooleans := make([]bool, max+1)
     for i := range(primeBooleans){primeBooleans[i] = true}
 
-    //Set initial value of p
+    //Set initial value of p; the method starts with a p of 2, as using 1 would mark all the integers
     p := 2
 
     //As this is usually done with 2 as a minimum value, set 0 and 1 to false
@@ -50,10 +51,13 @@ func primeFamilies(x int) bool {
     }
 
     //Do digit replacement for all possible combinations
+    //digits := len(ints)
+
     return true
 }
 
 func main() {
     primes := eratosthenes(9999999)
-    println(primes[len(primes)-1])
+    test := big.NewInt(0).Binomial(4,2)
+    println(test.Int64())
 }
