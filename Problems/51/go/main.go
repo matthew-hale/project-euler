@@ -63,18 +63,6 @@ func primeFamilies(x int) bool {
         5 choose 5
     Then we have to actually get those combinations.
         e.g. for 5 choose 2, there are 10 combinations; we have to generate all 10, ensuring there are no duplicates
-    
-    Example: given the following prime, enumerate the digit replacements that must be performed:
-
-    1103
-
-    4 digits, so for each digit:
-        4 choose 1 = 4
-        for each:
-            create a digit combination that hasn't already been created, and add it to a set
-        4 choose 2
-        4 choose 3
-        4 choose 4
     */
     n := len(ints)
     for i := 1; i <= n; i++ {
@@ -83,6 +71,8 @@ func primeFamilies(x int) bool {
             //binomial = number of combinations
             //i = number of digits we are choosing
             //n = total number of digits in the prime
+            //we want a slice of bools to represent a pattern
+            var pattern []bool
         }
     }
 
@@ -95,7 +85,7 @@ func main() {
     for prime in range primes {
         families := primeFamilies(prime)
         for family in range families {
-            count := primeCount(family,primes)
+            count := primeCount(family, primes)
             if count == 8 {
                 println(prime)
                 os.exit(0)
