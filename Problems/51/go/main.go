@@ -8,7 +8,7 @@ import (
 
 //Generate primes using the sieve of eratosthenes method
 //Estimated maximum of 7 digits for this problem
-func eratosthenes(max int) (primes []int) {
+func eratosthenes(max int) (primeBooleans []bool) {
     //Create a slice of booleans with indexes from 0-max, and make them all true
     primeBooleans := make([]bool, max+1)
     for i := range(primeBooleans){primeBooleans[i] = true}
@@ -31,12 +31,6 @@ func eratosthenes(max int) (primes []int) {
         p++
     }
 
-    //Iterate over booleans, adding the indices which are true to the list of primes
-    for num := 1; num <= max; num++ {
-        if primeBooleans[num] {
-            primes = append(primes, num)
-        }
-    }
 
     return
 }
@@ -63,6 +57,8 @@ func primeFamilies(x int) bool {
         5 choose 5
     Then we have to actually get those combinations.
         e.g. for 5 choose 2, there are 10 combinations; we have to generate all 10, ensuring there are no duplicates
+    The easiest way to do this is via binary counting; counting up through all the 5-digit binary numbers will produce
+    a set of masks for all of our digit replacements for 5 digit numbers; same for 6, 7, etc.
     */
     n := len(ints)
     for i := 1; i <= n; i++ {
@@ -80,8 +76,18 @@ func primeFamilies(x int) bool {
 }
 
 func main() {
-    primes := eratosthenes(9999999)
+    //We want to keep this slice as it offers an easy prime check for our prime families
+    primeBooleans := eratosthenes(9999999)
 
+    //Iterate over booleans, adding the indices which are true to the list of primes
+    var primes []int
+    for num := 1; num <= max; num++ {
+        if primeBooleans[num] {
+            primes = append(primes, num)
+        }
+    }
+
+    //For each prime, generate its families
     for prime in range primes {
         families := primeFamilies(prime)
         for family in range families {
